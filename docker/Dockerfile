@@ -1,5 +1,5 @@
 
-FROM node:14-alpine
+FROM node:lts-alpine
 
 LABEL maintainer="wellington Junior <wellington.junior@madeiramadeira.com.br>"
 LABEL contributors=""
@@ -24,7 +24,7 @@ RUN apk --no-cache --virtual build-dependencies add \
 COPY . ./
 
 RUN npm config set cache /app/.npm-cache --global
-RUN npm install -g serverless
+RUN npm install -g serverless ts-node
 RUN npm install
 
 EXPOSE 3000

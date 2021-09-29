@@ -24,7 +24,9 @@ RUN apk --no-cache --virtual build-dependencies add \
 COPY . ./
 
 RUN npm config set cache /app/.npm-cache --global
-RUN npm install -g serverless ts-node
+RUN npm install -g serverless \
+ts-node \
+nodemon
 RUN npm install
 
 EXPOSE 3000

@@ -1,6 +1,9 @@
 
 FROM node:14-alpine
 
+LABEL maintainer="wellington Junior <wellington.junior@madeiramadeira.com.br>"
+LABEL contributors=""
+
 RUN mkdir -p /app
 
 WORKDIR /app

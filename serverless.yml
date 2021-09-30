@@ -44,8 +44,6 @@ plugins:
   - serverless-webpack
   # https://www.serverless.com/plugins/serverless-dotenv-plugin
   - serverless-dotenv-plugin
-  # - serverless-plugin-warmup
-  # - serverless-prune-plugin
 
 functions:
   main:

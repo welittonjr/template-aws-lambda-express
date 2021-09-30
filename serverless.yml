@@ -1,0 +1,54 @@
+service: template-express-lambda-typescript
+
+frameworkVersion: '2'
+
+package:
+  individually: true
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packager: 'yarn' # Empacotador que será usado para empacotar seus módulos externos
+    excludeFiles: src/**/*.test.[t|j]s # Excluir arquivos de teste
+  warmup:
+    enabled: true
+    events:
+      - schedule: rate(5 minutes)
+    prewarm: true
+    concurrency: 1
+  prune:
+    automatic: true
+    number: 5 # Número de versões para manter
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs14.x
+  region: us-east-2
+  memorySize: 256
+  lambdaHashingVersion: 20201221
+
+useDotenv: true
+
+plugins:
+  # https://www.serverless.com/plugins/serverless-offline/
+  - serverless-offline
+  # https://www.serverless.com/plugins/serverless-plugin-canary-deployments/
+  - serverless-plugin-canary-deployments
+  # https://www.serverless.com/plugins/serverless-plugin-resource-tagging/
+  - serverless-plugin-resource-tagging
+  # https://www.serverless.com/plugins/serverless-tag-cloud-watch-logs/
+  - serverless-tag-cloud-watch-logs
+  # https://www.npmjs.com/package/serverless-webpack
+  - serverless-webpack
+  # https://www.serverless.com/plugins/serverless-dotenv-plugin
+  - serverless-dotenv-plugin
+
+functions:
+  main:
+    handler: app.handler
+    events:
+      - http:
+          method: any
+          path: /{any+}

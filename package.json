@@ -30,6 +30,9 @@
     "typescript": "^4.4.3"
   },
   "devDependencies": {
-    "serverless-offline": "^8.2.0"
+    "serverless-offline": "^8.2.0",
+    "serverless-plugin-canary-deployments": "^0.7.0",
+    "serverless-plugin-resource-tagging": "^1.1.1",
+    "serverless-tag-cloud-watch-logs": "^1.0.0"
   }
 }

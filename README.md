@@ -1,1 +1,1 @@
-# template-express-lambda-typescript
+# template-aws-lambda-express

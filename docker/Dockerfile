@@ -1,7 +1,7 @@
 
 FROM node:lts-alpine
 
-LABEL maintainer="wellington Junior <wellington.junior@madeiramadeira.com.br>"
+LABEL maintainer="wellington Junior <wndrj7@gmail.com>"
 LABEL contributors=""
 
 RUN mkdir -p /app

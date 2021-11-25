@@ -1,0 +1,44 @@
+version: "3.7"
+
+networks:
+    lambda-sqs-network:
+        driver: bridge
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        container_name: lambda-sqs-app
+        ports:
+            - 3000:3000
+        volumes:
+            - ./:/app
+        networks:
+            - lambda-sqs-network
+
+    redis:
+        image: "redis:alpine"
+        ports:
+            - 6379:6379
+        expose:
+            - 6379
+        networks:
+            - lambda-sqs-network
+
+    localstack:
+        image: localstack/localstack
+        container_name: lambda-sqs-localstack
+        privileged: true
+        ports:
+            - "4566-4582:4566-4582"
+        environment:
+            - SERVICES=sqs,lambda,cloudwatch,s3
+            - AWS_DEFAULT_REGION=us-east-1
+            - EDGE_PORT=4566
+            - DEBUG= 1
+        networks:
+            - lambda-sqs-network
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /tmp/localstack:/tmp/localstack

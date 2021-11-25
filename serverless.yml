@@ -9,7 +9,7 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-    packager: 'yarn' # Empacotador que será usado para empacotar seus módulos externos
+    packager: 'yarn' # Empacotador que será usado para módulos externos
     excludeFiles: src/**/*.test.[t|j]s # Excluir arquivos de teste
   warmup:
     enabled: true

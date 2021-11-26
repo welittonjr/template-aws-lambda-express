@@ -8,14 +8,10 @@ RUN mkdir -p /app
 
 WORKDIR /app
 
-#  install app dependencies
 COPY package.json ./
-# COPY package-lock.json ./
 
-# add app
 COPY . ./
 
-RUN npm install -g serverless
 RUN npm install
 
 EXPOSE 3000

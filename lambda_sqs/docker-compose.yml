@@ -17,21 +17,12 @@ services:
         networks:
             - lambda-sqs-network
 
-    redis:
-        image: "redis:alpine"
-        ports:
-            - 6379:6379
-        expose:
-            - 6379
-        networks:
-            - lambda-sqs-network
-
     localstack:
         image: localstack/localstack
         container_name: lambda-sqs-localstack
         privileged: true
         ports:
-            - "4566-4582:4566-4582"
+            - "4567:4566"
         environment:
             - SERVICES=sqs,lambda,cloudwatch,s3
             - AWS_DEFAULT_REGION=us-east-1
